@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/File-upload-manager/static/css/main.18cb2f5f.css",
+    "main.js": "/File-upload-manager/static/js/main.df718dd7.js",
+    "static/js/453.be1791cd.chunk.js": "/File-upload-manager/static/js/453.be1791cd.chunk.js",
+    "index.html": "/File-upload-manager/index.html",
+    "main.18cb2f5f.css.map": "/File-upload-manager/static/css/main.18cb2f5f.css.map",
+    "main.df718dd7.js.map": "/File-upload-manager/static/js/main.df718dd7.js.map",
+    "453.be1791cd.chunk.js.map": "/File-upload-manager/static/js/453.be1791cd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18cb2f5f.css",
+    "static/js/main.df718dd7.js"
+  ]
+}

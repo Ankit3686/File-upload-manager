@@ -3,178 +3,214 @@ import { useState } from "react";
 import ProgressBar from "./ProgressBar";
 
 import {
-    CANCEL_UPLOAD,
-    RETRY_UPLOAD,
-    REMOVE_FILE,
+  CANCEL_UPLOAD,
+  RETRY_UPLOAD,
+  REMOVE_FILE,
 } from "../reducer/actions";
 
 function UploadItem({
-    file,
-    dispatch,
+  file,
+  dispatch,
 }) {
 
-    const [showPreview, setShowPreview] =
-        useState(false);
+  const [showPreview,
+    setShowPreview] =
+    useState(false);
 
-    // Safe Preview
-    const previewUrl =
-        file.preview || null;
+  // ===== SAFE PREVIEW =====
 
-    // Safe File Size
-    const fileSize =
-        file.size
-            ? (file.size / 1024).toFixed(2)
-            : "0";
+  const previewUrl =
+    file.preview || null;
 
-    return (
-        <>
-            <div className="upload-item">
+  // ===== SAFE FILE SIZE =====
 
-                {/* ===== IMAGE PREVIEW ===== */}
+  const fileSize =
+    file.size
+      ? (file.size / 1024)
+        .toFixed(2)
+      : "0";
 
-                {previewUrl && (
+  return (
+    <>
 
-                    <img
-                        src={previewUrl}
-                        alt={file.name}
-                        className="preview-image"
-                        onClick={() =>
-                            setShowPreview(true)
-                        }
-                    />
+      {/* ===== CARD ===== */}
 
-                )}
+      <div className="upload-item">
 
-                {/* ===== FILE NAME ===== */}
+        {/* ===== IMAGE PREVIEW ===== */}
 
-                <h3 className="file-name">
-                    {file.name}
-                </h3>
+        {previewUrl && (
 
-                {/* ===== FILE SIZE ===== */}
+          <img
+            src={previewUrl}
+            alt={file.name}
 
-                <p className="file-size">
-                    {fileSize} KB
-                </p>
+            className="preview-image"
 
-                {/* ===== PROGRESS BAR ===== */}
+            onClick={() => {
+              setShowPreview(true);
+            }}
+          />
 
-                <ProgressBar
-                    progress={file.progress}
-                />
+        )}
 
-                {/* ===== PROGRESS TEXT ===== */}
+        {/* ===== FILE NAME ===== */}
 
-                <p className="progress-percentage">
-                    {file.progress}%
-                </p>
+        <h3 className="file-name">
+          {file.name}
+        </h3>
 
-                {/* ===== STATUS ===== */}
+        {/* ===== FILE SIZE ===== */}
 
-                <p
-                    className={`status ${file.status}`}
-                >
-                    Status: {file.status}
-                </p>
+        <p className="file-size">
+          {fileSize} KB
+        </p>
 
-                {/* ===== ERROR MESSAGE ===== */}
+        {/* ===== PROGRESS BAR ===== */}
 
-                {file.error && (
+        <div className="progress-container">
 
-                    <p className="error-text">
-                        {file.error}
-                    </p>
+          <ProgressBar
+            progress={
+              file.progress
+            }
+          />
 
-                )}
+        </div>
 
-                {/* ===== BUTTONS ===== */}
+        {/* ===== PROGRESS TEXT ===== */}
 
-                <div className="buttons">
+        <p className="progress-percentage">
 
-                    {/* CANCEL */}
+          {file.progress}%
 
-                    {file.status ===
-                        "uploading" && (
+        </p>
 
-                            <button
-                                onClick={() =>
-                                    dispatch({
-                                        type:
-                                            CANCEL_UPLOAD,
-                                        payload:
-                                            file.id,
-                                    })
-                                }
-                            >
-                                Cancel
-                            </button>
+        {/* ===== STATUS ===== */}
 
-                        )}
+        <p
+          className={`status ${file.status}`}
+        >
 
-                    {/* RETRY */}
+          Status:
+          {" "}
+          {file.status}
 
-                    {(file.status ===
-                        "failed" ||
+        </p>
 
-                        file.status ===
-                        "cancelled") && (
+        {/* ===== ERROR ===== */}
 
-                            <button
-                                onClick={() =>
-                                    dispatch({
-                                        type:
-                                            RETRY_UPLOAD,
-                                        payload:
-                                            file.id,
-                                    })
-                                }
-                            >
-                                Retry
-                            </button>
+        {file.error && (
 
-                        )}
+          <p className="error-text">
 
-                    {/* REMOVE */}
+            {file.error}
 
-                    <button
-                        onClick={() =>
-                            dispatch({
-                                type:
-                                    REMOVE_FILE,
-                                payload:
-                                    file.id,
-                            })
-                        }
-                    >
-                        Remove
-                    </button>
+          </p>
 
-                </div>
-            </div>
+        )}
 
-            {/* ===== FULLSCREEN PREVIEW ===== */}
+        {/* ===== BUTTONS ===== */}
 
-            {showPreview &&
-                previewUrl && (
+        <div className="buttons">
 
-                    <div
-                        className="image-modal"
-                        onClick={() =>
-                            setShowPreview(false)
-                        }
-                    >
+          {/* ===== CANCEL ===== */}
 
-                        <img
-                            src={previewUrl}
-                            alt={file.name}
-                            className="fullscreen-image"
-                        />
+          {file.status ===
+            "uploading" && (
 
-                    </div>
+              <button
+                onClick={() =>
+                  dispatch({
+                    type:
+                      CANCEL_UPLOAD,
 
-                )}
-        </>
-    );
+                    payload:
+                      file.id,
+                  })
+                }
+              >
+                Cancel
+              </button>
+
+            )}
+
+          {/* ===== RETRY ===== */}
+
+          {(file.status ===
+            "failed" ||
+
+            file.status ===
+            "cancelled") && (
+
+              <button
+                onClick={() =>
+                  dispatch({
+                    type:
+                      RETRY_UPLOAD,
+
+                    payload:
+                      file.id,
+                  })
+                }
+              >
+                Retry
+              </button>
+
+            )}
+
+          {/* ===== REMOVE ===== */}
+
+          <button
+            onClick={() =>
+              dispatch({
+                type:
+                  REMOVE_FILE,
+
+                payload:
+                  file.id,
+              })
+            }
+          >
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+
+      {/* ===== FULLSCREEN MODAL ===== */}
+
+      {showPreview &&
+        previewUrl && (
+
+          <div
+            className="image-modal"
+
+            onClick={() =>
+              setShowPreview(false)
+            }
+          >
+
+            <img
+              src={previewUrl}
+
+              alt={file.name}
+
+              className="fullscreen-image"
+
+              // Prevent modal close
+              onClick={(e) =>
+                e.stopPropagation()
+              }
+            />
+
+          </div>
+
+        )}
+
+    </>
+  );
 }
 
 export default UploadItem;

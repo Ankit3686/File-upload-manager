@@ -1,38 +1,776 @@
-.App {
-  text-align: center;
+/* =========================================================
+   ULTRA PREMIUM GLASSMORPHIC CYBER UI
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===== RESET ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ===== ROOT ===== */
+
+:root {
+
+  --bg-dark:
+    #020617;
+
+  --bg-card:
+    rgba(255, 255, 255, 0.08);
+
+  --border:
+    rgba(255, 255, 255, 0.14);
+
+  --cyan:
+    #22d3ee;
+
+  --purple:
+    #8b5cf6;
+
+  --pink:
+    #ec4899;
+
+  --green:
+    #4ade80;
+
+  --red:
+    #fb7185;
+
+  --white:
+    #ffffff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* ===== BODY ===== */
 
-.App-header {
-  background-color: #282c34;
+body {
+
+  font-family:
+    'Poppins',
+    sans-serif;
+
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  overflow-x: hidden;
+
   color: white;
+
+  background:
+    radial-gradient(circle at top left,
+      rgba(139, 92, 246, 0.22),
+      transparent 35%),
+
+    radial-gradient(circle at bottom right,
+      rgba(34, 211, 238, 0.18),
+      transparent 35%),
+
+    linear-gradient(135deg,
+      #020617,
+      #0f172a,
+      #111827);
+
+  background-attachment: fixed;
+
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+/* ===== GRID OVERLAY ===== */
+
+body::before {
+
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px),
+
+    linear-gradient(90deg,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px);
+
+  background-size:
+    45px 45px;
+
+  z-index: -3;
 }
 
-@keyframes App-logo-spin {
+/* ===== GLOW EFFECT ===== */
+
+body::after {
+
+  content: "";
+
+  position: fixed;
+
+  width: 700px;
+  height: 700px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(168, 85, 247, 0.22),
+      transparent 70%);
+
+  filter: blur(120px);
+
+  top: -250px;
+  right: -200px;
+
+  animation:
+    floatingGlow 10s infinite alternate;
+
+  z-index: -2;
+}
+
+@keyframes floatingGlow {
+
   from {
-    transform: rotate(0deg);
+    transform:
+      translateY(0px) translateX(0px);
   }
+
   to {
-    transform: rotate(360deg);
+    transform:
+      translateY(80px) translateX(-80px);
+  }
+}
+
+/* ===== APP ===== */
+
+.app {
+
+  max-width: 1000px;
+
+  margin: auto;
+
+  padding:
+    60px 20px 80px;
+}
+
+/* ===== TITLE ===== */
+
+h1 {
+
+  text-align: center;
+
+  font-size: 4rem;
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-weight: 800;
+
+  margin-bottom: 50px;
+
+  letter-spacing: 2px;
+
+  background:
+    linear-gradient(90deg,
+      #22d3ee,
+      #8b5cf6,
+      #ec4899,
+      #22d3ee);
+
+  background-size:
+    300%;
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color:
+    transparent;
+
+  animation:
+    gradientMove 6s linear infinite;
+}
+
+@keyframes gradientMove {
+
+  from {
+    background-position: 0%;
+  }
+
+  to {
+    background-position: 300%;
+  }
+}
+
+/* ===== FILE INPUT ===== */
+
+.file-upload {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-bottom: 45px;
+}
+
+.file-upload input[type="file"] {
+
+  width: 100%;
+  max-width: 650px;
+
+  padding: 28px;
+
+  border-radius: 30px;
+
+  border:
+    2px dashed rgba(255, 255, 255, 0.15);
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter:
+    blur(18px);
+
+  color: white;
+
+  cursor: pointer;
+
+  transition:
+    0.4s ease;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.35);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.file-upload input[type="file"]:hover {
+
+  transform:
+    translateY(-3px) scale(1.01);
+
+  border-color:
+    var(--cyan);
+
+  box-shadow:
+    0 0 40px rgba(34, 211, 238, 0.25);
+}
+
+/* ===== LIST ===== */
+
+.upload-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 28px;
+}
+
+/* ===== CARD ===== */
+
+.upload-item {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 30px;
+
+  border-radius: 34px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter:
+    blur(22px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.35);
+
+  transition:
+    0.4s ease;
+}
+
+.upload-item:hover {
+
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* ===== GLOW BORDER ===== */
+
+.upload-item::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: -2px;
+
+  border-radius: inherit;
+
+  padding: 2px;
+
+  background:
+    linear-gradient(130deg,
+      #22d3ee,
+      #8b5cf6,
+      #ec4899);
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:
+    xor;
+
+  mask-composite:
+    exclude;
+
+  opacity: 0;
+
+  transition:
+    0.4s ease;
+}
+
+.upload-item:hover::before {
+
+  opacity: 1;
+}
+
+/* ===== PREVIEW IMAGE ===== */
+
+.preview-image {
+
+  width: 130px;
+  height: 130px;
+
+  object-fit: cover;
+
+  border-radius: 28px;
+
+  margin-bottom: 18px;
+
+  border:
+    3px solid rgba(255, 255, 255, 0.15);
+
+  cursor: pointer;
+
+  transition:
+    0.4s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.preview-image:hover {
+
+  transform:
+    scale(1.06) rotate(1deg);
+
+  border-color:
+    var(--cyan);
+
+  box-shadow:
+    0 0 35px rgba(34, 211, 238, 0.35);
+}
+
+/* ===== FILE NAME ===== */
+
+.file-name {
+
+  font-size: 1.3rem;
+
+  font-weight: 700;
+
+  margin-bottom: 10px;
+
+  word-break: break-word;
+}
+
+/* ===== FILE SIZE ===== */
+
+.file-size {
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  margin-bottom: 16px;
+}
+
+/* ===== PROGRESS BAR ===== */
+
+.progress-container {
+
+  margin-top: 18px;
+}
+
+.progress-bar {
+
+  width: 100%;
+
+  height: 24px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== FILL ===== */
+
+.progress-fill {
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  padding-right: 12px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(90deg,
+      #06b6d4,
+      #8b5cf6,
+      #ec4899);
+
+  transition:
+    width 0.35s ease;
+
+  box-shadow:
+    0 0 25px rgba(139, 92, 246, 0.45);
+}
+
+.progress-fill::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+
+  animation:
+    progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ===== TEXT ===== */
+
+.progress-text {
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: white;
+
+  z-index: 2;
+}
+
+/* ===== STATUS ===== */
+
+.status {
+
+  margin-top: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+}
+
+.status.uploading {
+  color: var(--cyan);
+}
+
+.status.success {
+  color: var(--green);
+}
+
+.status.failed {
+  color: var(--red);
+}
+
+.status.cancelled {
+  color: #cbd5e1;
+}
+
+/* ===== ERROR ===== */
+
+.error-text {
+
+  margin-top: 8px;
+
+  color:
+    #fda4af;
+
+  font-size: 0.95rem;
+}
+
+/* ===== BUTTONS ===== */
+
+.buttons {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-top: 24px;
+}
+
+/* ===== BUTTON ===== */
+
+button {
+
+  border: none;
+
+  outline: none;
+
+  padding:
+    12px 22px;
+
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  color: white;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    0.35s ease;
+
+  background:
+    linear-gradient(to right,
+      #06b6d4,
+      #8b5cf6);
+
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.35);
+}
+
+button::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+
+  transform:
+    translateX(-100%);
+}
+
+button:hover::before {
+
+  animation:
+    buttonShine 1s forwards;
+}
+
+@keyframes buttonShine {
+
+  to {
+    transform:
+      translateX(100%);
+  }
+}
+
+button:hover {
+
+  transform:
+    translateY(-3px) scale(1.03);
+}
+
+/* ===== REMOVE BUTTON ===== */
+
+button:last-child {
+
+  background:
+    linear-gradient(to right,
+      #ef4444,
+      #f97316);
+
+  box-shadow:
+    0 8px 25px rgba(239, 68, 68, 0.35);
+}
+
+/* ===== MODAL ===== */
+
+.image-modal {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(0, 0, 0, 0.88);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 999;
+
+  backdrop-filter:
+    blur(10px);
+
+  animation:
+    fadeIn 0.3s ease;
+}
+
+/* ===== FULLSCREEN IMAGE ===== */
+
+.fullscreen-image {
+
+  max-width: 90%;
+  max-height: 90%;
+
+  border-radius: 28px;
+
+  object-fit: contain;
+
+  animation:
+    zoomIn 0.35s ease;
+
+  box-shadow:
+    0 0 70px rgba(255, 255, 255, 0.12);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+
+  from {
+    transform:
+      scale(0.7);
+
+    opacity: 0;
+  }
+
+  to {
+    transform:
+      scale(1);
+
+    opacity: 1;
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+
+  background:
+    rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(#22d3ee,
+      #8b5cf6,
+      #ec4899);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+  h1 {
+
+    font-size: 2.5rem;
+  }
+
+  .upload-item {
+
+    padding: 24px;
+  }
+
+  .preview-image {
+
+    width: 100px;
+    height: 100px;
+  }
+
+  button {
+
+    width: 100%;
   }
 }
